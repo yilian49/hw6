@@ -45,4 +45,17 @@ bool HTree:find(key_t key) const
 
 path_t HTree::path_to(int key) const
 {
-	if (this->find(key
+	path_t path = {};
+	if (left_ && left_->find(key))
+	{
+		return path_t.insert(Direction::left) + left_->path_to(key);
+	}
+	if (key_ == key)
+	{
+		return;
+	}
+	if (right_ && right_->find(key))
+	{
+		return Direction::right + right->path_to(key);
+	}
+	else

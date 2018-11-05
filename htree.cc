@@ -22,6 +22,10 @@ uint64_t HTree::get_value() const
 	return value_;
 }
 
+HTree::~HTree()
+{
+}
+
 HTree::tree_ptr_t HTree::get_child(Direction dir) const
 {
 	if (left_ && dir == Direction::LEFT)
@@ -113,6 +117,10 @@ HTree::path_t HTree::path_to(int key) const
 	exit(1);
 */
 
+bool HTree::compare_trees(tree_ptr_t test1, tree_ptr_t test2) 
+{
+    return test1->get_value() < test2->get_value();
+}
 
 
 

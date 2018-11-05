@@ -34,7 +34,7 @@ class HTree {
   // Return a list of directions from root to a node of a given key.
   // Crashes (with an assert) if key not contained in this tree
   path_t path_to(int key) const;
-
+bool compare_trees(tree_ptr_t test1, tree_ptr_t test2);
 
  private:
   key_t key_;

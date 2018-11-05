@@ -3,46 +3,57 @@
 
 int main()
 {
-	HTree::tree_ptr_t root = std::make_shared<HTree>(1, 1, nullptr, nullptr);
-	root->get_child(HTree::Direction::LEFT) = std::make_shared<HTree>(6, 0, std::make_shared<HTree>(7, 0, nullptr, nullptr), std::make_shared<HTree>(8,0,nullptr,nullptr));
-	root->get_child(HTree::Direction::RIGHT) = std::make_shared<HTree>(2, 0, std::make_shared<HTree>(4, 0, std::make_shared<HTree>(8, 0, nullptr, nullptr), std::make_shared<HTree>(1, 0, nullptr, nullptr)), std::make_shared<HTree>(7, 0, std::make_shared<HTree>(5, 0, nullptr, nullptr), nullptr));
-/*	root->get_child(HTree::Direction::LEFT)->get_child(HTree::Direction::LEFT)->get_child(HTree::Direction::LEFT) = std::make_shared<HTree>(2,0,nullptr,nullptr);
-	root->get_child(HTree::Direction::LEFT)->get_child(HTree::Direction::RIGHT)->get_child(HTree::Direction::LEFT) = std::make_shared<HTree>(4,0,nullptr,nullptr);
-*/
+//	HTree::tree_ptr_t root = std::make_shared<HTree>(1, 1, nullptr, nullptr);
+
+	HTree::Direction rightD = HTree::Direction::RIGHT;
+	HTree::Direction leftD  = HTree::Direction::LEFT;
+
+	HTree::tree_ptr_t root = std::make_shared<HTree>(6, 0, 
+			std::make_shared<HTree>(7, 0, nullptr, nullptr), 
+			std::make_shared<HTree>(2, 0, 
+				std::make_shared<HTree>(4, 0, 
+					std::make_shared<HTree>(8, 0, nullptr, nullptr), 
+					std::make_shared<HTree>(1, 0, nullptr, nullptr)), 
+				std::make_shared<HTree>(7, 0, 
+					std::make_shared<HTree>(5, 0, nullptr, nullptr), 
+					nullptr)));
+	
+	std::cout<<root->get_key()<<"\n";
+	std::cout<<root->get_value()<<"\n";
+	std::cout<<root->get_child(rightD)->get_key()<<"\n";
+	std::cout<<root->get_child(leftD)->get_key()<<"\n";
+//should return 6, 0, 8, 7
+
+
 	std::cout<<"\n";	
 	
+	// test to see if path_to gives the right path
 	
-	
-	if(root->path_to(4) == HTree::path_t {HTree::Direction::LEFT, HTree::Direction::RIGHT, HTree::Direction::LEFT} and
-		root->path_to(1) == HTree::path_t {}and
-		root->path_to(2) == HTree::path_t {HTree::Direction::LEFT, HTree::Direction::LEFT, HTree::Direction::LEFT}and
-		root->path_to(5) == HTree::path_t {HTree::Direction::LEFT, HTree::Direction::RIGHT, HTree::Direction::LEFT})
-	{	std::cout<<"path_to tested";}
-	else{ 	std::cout<<"path_to failed";}
-	std::cout<<"\n";
-/*	if(root->node_at("LL").get_key() == 7 and
-		root->node_at("").get_key() == 1 and
-		root->node_at("RRL").get_key() == 5 and
-		root->node_at("R").get_key() == 2 and
-		root->node_at("RLR").get_key() == 1)
-	{ 	std::cout<<"node_at tested";}
-	else{	std::cout<< "node_at failed";}
-	
-*/	
-		HTree::tree_ptr_t tree1 = root;
-		HTree::tree_ptr_t tree2 = root->get_child(HTree::Direction::LEFT);
-		HTree::tree_ptr_t tree3 = root->get_child(HTree::Direction::LEFT)->get_child(HTree::Direction::LEFT);
-	root->~HTree();
-	std::cout<<"\n";	
-	if (tree1==nullptr and
-		tree2==nullptr and
-		tree3==nullptr 
-	   )
-	{	std::cout<<"destroy_tree tested";}
-	else
-	{	std::cout<<"destroy_tree failed";}
-	
+
+	HTree::path_t path = root->path_to(5);
+	for (auto v: path)
+	{
+		if( v == rightD)
+			std::cout<<"Right"<<"\n";
+		if( v == leftD)
+			std::cout<<"Left"<<"\n";
 	}
+
+
+
+/*		HTree::tree_ptr_t tree1 = root;
+		HTree::tree_ptr_t tree2 = root->get_child(leftD);
+		HTree::tree_ptr_t tree3 = 
+			root->get_child(rightD)
+				->get_child(leftD);
+	std::cout<<tree3->get_key();
+
+	root->~HTree();
+	std::cout<<"\n";
+	
+	std::cout<<tree1->get_key();
+*/
+}
 
 		
 

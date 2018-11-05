@@ -3,13 +3,12 @@
 #include <cassert>
 
 HTree::HTree(int key, uint64_t value, 
-		HTree::tree_ptr_t left, HTree::tree_ptr_t right)
+		tree_ptr_t left, tree_ptr_t right)
 {
 	key_ = key;
 	value_ = value;
 	left_ = left;
 	right_ = right;
-
 }	
 
 int HTree::get_key() const
@@ -23,6 +22,7 @@ uint64_t HTree::get_value() const
 }
 
 HTree::~HTree()
+
 {
 }
 
@@ -66,8 +66,11 @@ HTree::path_t HTree::path_to(int key) const
 		path.push_front(Direction::RIGHT);
 		return path;
 	}
-	exit(1);
-}
+	else{
+		std::cout<<"not in here!"<<"\n";
+		return path;	
+	}
+	}
 
 	/*
 	assert(find(key));
@@ -115,13 +118,8 @@ HTree::path_t HTree::path_to(int key) const
 		return path.insert(path.begin(), right_->path_to(key));
 	}
 	exit(1);
+
+
 */
-
-bool HTree::compare_trees(tree_ptr_t test1, tree_ptr_t test2) 
-{
-    return test1->get_value() < test2->get_value();
-}
-
-
 
 

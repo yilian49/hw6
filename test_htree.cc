@@ -47,9 +47,9 @@ int main()
 			root->get_child(rightD)
 				->get_child(leftD);
 	std::cout<<tree3->get_key();
-
+*/
 	root->~HTree();
-	std::cout<<"\n";
+/*	std::cout<<"\n";
 	
 	std::cout<<tree1->get_key();
 */

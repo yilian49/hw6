@@ -24,8 +24,11 @@ uint64_t HTree::get_value() const
 }
 
 HTree::~HTree()
-
-{
+{	
+	if (left_)
+		left_->~HTree();
+	if (right_)
+		right_->~HTree();
 }
 
 HTree::tree_ptr_t HTree::get_child(Direction dir) const
@@ -68,10 +71,9 @@ HTree::path_t HTree::path_to(int key) const
 		path.push_front(Direction::RIGHT);
 		return path;
 	}
-	else{
-		std::cout<<"not in here!"<<"\n";
-		return path;	
-	}
+
+	return path;
+
 	}
 
 	/*

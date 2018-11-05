@@ -1,6 +1,8 @@
 #include <iostream>
 #include "htree.hh"
 #include <cassert>
+#pragma once
+
 
 HTree::HTree(int key, uint64_t value, 
 		tree_ptr_t left, tree_ptr_t right)
